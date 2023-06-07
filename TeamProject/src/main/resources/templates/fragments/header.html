@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<header class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="fragment-header">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="/">상크스</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+                class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/board/list">게시판</a>
+                </li>
+                <div sec:authorize="hasRole('ADMIN')">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/profile/member">회원관리</a></li>
+                </div>
+            </ul>
+            <div sec:authorize="isAnonymous()" id="login-container">
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="button" onclick="location.href='/sign/sign-in'">
+                        <i class="bi bi-person-fill me-1"></i>
+                        로그인
+                    </button>
+                </form>
+            </div>
+            <div class="btn-group" sec:authorize="isAuthenticated()">
+                <button class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                    type="button" onclick="location.href='#' ">
+                    <i class="bi bi-person-fill me-1"></i>
+                    내 프로필
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="/profile/check-password">프로필 관리</a></li>
+                    <li><a class="dropdown-item" href="/profile/my-writing">작성글 보기</a></li>
+                    <li><a class="dropdown-item" href="/profile/my-review">댓글 보기</a></li>
+                    <div sec:authorize="hasRole('USER')">
+                        <li><a class="dropdown-item" href="/profile/interest">관심 목록</a></li>
+                    </div>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" id="signOut" type="button"
+                            onclick="location.href='/sign/logout'">로그아웃</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="/js/header.js"></script>
+</header>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title></title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link th:href="@{/css/main_style.css}" rel="stylesheet" />
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <!-- Moment -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</head>
+<style>
+  a:hover,
+  tr:hover {
+    cursor: pointer;
+  }
+  table {
+    text-align: center;
+  }
+  .checkbox-css {
+  transform: scale(1.2);
+ }
+ #search {
+    width: 250px;
+ }
+</style>
+<body>
+  <!-- Navigation-->
+  <div th:replace="/fragments/header.html :: fragment-header"></div>
+  <!-- Section-->
+  <section class="container mt-5 my-5">
+    <h1 class="h3 mb-3 fw-normal">내 댓글 보기</h1>
+    <div th:replace="/fragments/my-review-body.html">
+  </section>
+  <!-- Footer-->
+  <div th:replace="/fragments/footer.html :: fragment-footer"></div>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script th:src="@{/js/my-review.js}"></script>
+</body>
+
+</html>

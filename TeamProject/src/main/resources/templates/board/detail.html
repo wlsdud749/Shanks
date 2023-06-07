@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>글 상세보기</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link th:href="@{/css/detail_style.css}" rel="stylesheet" />
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- Moment -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</head>
+<style>
+    table > thead, tbody > tr:first-child {
+        text-align: center;
+    }
+    table .title{
+        max-width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+  </style>
+<body>
+  <!-- Navigation-->
+  <div th:replace="/fragments/header.html :: fragment-header"></div>
+  <!-- Section-->
+  <section class="container px-4 px-lg-5 py-5 mt-5">
+    <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-primary btn me-2" id="btnList" onclick="location.href='/board/list'">목록</button>
+        <button type="button" class="btn btn-primary btn me-2" id="btnModify" th:if="${#authentication.name == board.memberDto.id}"
+            th:onclick="|location.href='/board/modify?board_idx=${board.board_idx}'|">
+            수정
+        </button>
+        <button type="button" class="btn btn-danger btn" id="btndelete" th:if="${#strings.contains(#authentication.name, board.memberDto.id) or #authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+            삭제
+        </button>
+    </div>
+    <table class="table table-striped">
+        <colgroup>
+            <col width="8%" />
+            <col width="8%" />
+            <col width="15%" />
+            <col width="*" />
+            <col width="8%" />
+            <col width="18%" />
+        </colgroup>
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Nick</th>
+                <th scope="col">카테고리</th>
+                <th scope="col">제목</th>
+                <th scope="col">조회수</th>
+                <th scope="col">작성날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row" id="board_idx" th:text="${board.board_idx}"></th>
+                <td id="nick" th:text="${board.memberDto.nick}"></td>
+                <td th:text="${board.category}"></td>
+                <th th:if="${board.boardType.name() == 'NOTICE'}" th:text="${board.title}"></th>
+                <td th:unless="${board.boardType.name() == 'NOTICE'}" th:text="${board.title}"></td>
+                <td id="count"></td>
+                <td th:text="${#temporals.format(board.regTime, 'yyyy-MM-dd HH:mm')}"></td>
+            </tr>
+            <tr>
+                <td colspan="6" th:utext="${board.contents}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="card">
+        <div class="card-body d-flex">
+            <div class="col-10"><textarea class="form-control"></textarea></div>
+            <div class="col-2"><button type="button" class="btn btn-primary btn-lg" id="saveBtn">댓글 작성</button></div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">댓글 리스트</div>
+        <div class="card-body">
+            <ul class="list-group" id="contents">
+                <!-- 댓글 목록 -->
+            </ul>
+        </div>
+    </div>
+  </section>
+  <!-- Footer-->
+  <div th:replace="/fragments/footer.html :: fragment-footer"></div>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script th:src="@{/js/detail.js}"></script>
+</body>
+
+</html>

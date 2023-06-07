@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="TeamProjectApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="TeamProject.main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="Team.TeamProject.TeamProjectApplication" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title></title>
+  <!-- Favicon-->
+  <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+  <!-- Bootstrap icons-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link th:href="@{/css/main_style.css}" rel="stylesheet" />
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <!-- Moment -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</head>
+<style>
+  a:hover,
+  tr:hover {
+    cursor: pointer;
+  }
+  table {
+    text-align: center;
+  }
+  .checkbox-css {
+  transform: scale(1.2);
+ }
+</style>
+<body>
+  <!-- Navigation-->
+  <div th:replace="/fragments/header.html :: fragment-header"></div>
+  <!-- Section-->
+  <section class="container mt-5 my-5">
+    <h1 class="h3 mb-3 fw-normal">회원 관리</h1>
+    <div class="container" style="min-height: 500px;">
+        <table class="table table-striped table-hover">
+          <colgroup>
+            <col width="8%" />
+            <col width="8%" />
+            <col width="15%" />
+            <col width="*" />
+            <col width="15%" />
+            <col width="15%" />
+          </colgroup>
+          <thead id ="table-contents">
+            <!-- 테이블 헤더 -->
+          </thead>
+          <tbody id="article-list">
+            <!-- 게시글 목록 -->
+          </tbody>
+        </table>
+      </div>
+      <div class="justify-content-center">
+        <ul class="pagination justify-content-center">
+          <!-- 페이지네이션 -->
+        </ul>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-danger" id="deleteBtn">탈퇴</button>
+      </div>
+    </div>
+  </section>
+  <!-- Footer-->
+  <div th:replace="/fragments/footer.html :: fragment-footer"></div>
+  <!-- Bootstrap core JS-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core theme JS-->
+  <script th:src="@{/js/member.js}"></script>
+</body>
+
+</html>
