@@ -5,6 +5,22 @@
 
 2023. SW 전문인재 양성과정에서 진행한 팀 프로젝트
 
+사용 기술
+
+- JAVA 11
+- Spring
+- Spring Data JPA
+- Jquery
+- Ajax
+- MySQL
+- HTML, CSS, JAVASCRIPT
+사용 툴
+
+- INTELIJ
+- VSCODE
+- TALEND
+
+기능
 
 - 사용한 데이터
 
